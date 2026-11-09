@@ -1,0 +1,301 @@
+[
+  {
+    "label": "names",
+    "method": "GET",
+    "path": "/api/names",
+    "body": null,
+    "status": 200,
+    "response": {
+      "names": [
+        "Americana",
+        "Bolognese",
+        "Calzone",
+        "Capricciosa",
+        "Carbonara",
+        "Frutti di Mare",
+        "Funghi",
+        "Fungi e Olive",
+        "Hawaii",
+        "Margherita",
+        "Marinara",
+        "Napoletana",
+        "Prosciutto",
+        "Pugliese",
+        "Quattro Formaggi",
+        "Quattro Stagioni",
+        "Romana",
+        "Siciliana"
+      ]
+    }
+  },
+  {
+    "label": "tools_no_token",
+    "method": "GET",
+    "path": "/api/tools",
+    "body": null,
+    "status": 401,
+    "response": {
+      "error": "authentication failed"
+    }
+  },
+  {
+    "label": "vegetarian",
+    "method": "POST",
+    "path": "/api/pizza",
+    "body": {
+      "mustBeVegetarian": true
+    },
+    "status": 200,
+    "response": {
+      "pizza": {
+        "id": 108448,
+        "name": "The Hurt Napoletana",
+        "dough": {
+          "ID": 1,
+          "name": "Thin",
+          "caloriesPerSlice": 100
+        },
+        "ingredients": [
+          {
+            "ID": 39,
+            "name": "Fresh basil",
+            "caloriesPerSlice": 25,
+            "vegetarian": true
+          },
+          {
+            "ID": 21,
+            "name": "Roasted red peppers",
+            "caloriesPerSlice": 50,
+            "vegetarian": true
+          },
+          {
+            "ID": 2,
+            "name": "Olive oil",
+            "caloriesPerSlice": 100,
+            "vegetarian": true
+          },
+          {
+            "ID": 3,
+            "name": "San Marzano tomatoes",
+            "caloriesPerSlice": 50,
+            "vegetarian": true
+          },
+          {
+            "ID": 6,
+            "name": "Mozzarella",
+            "caloriesPerSlice": 100,
+            "vegetarian": true
+          },
+          {
+            "ID": 29,
+            "name": "Kalamata olives",
+            "caloriesPerSlice": 50,
+            "vegetarian": true
+          }
+        ],
+        "tool": "Scissors"
+      },
+      "calories": 375,
+      "vegetarian": true
+    }
+  },
+  {
+    "label": "create_user",
+    "method": "POST",
+    "path": "/api/users",
+    "body": {
+      "username": "lab-c70fc58a85f4",
+      "password": "Pizza-2026"
+    },
+    "status": 201,
+    "response": {
+      "id": 1821,
+      "username": "lab-c70fc58a85f4"
+    }
+  },
+  {
+    "label": "login",
+    "method": "POST",
+    "path": "/api/users/token/login",
+    "body": "[omitted]",
+    "status": 200,
+    "response": {
+      "token": "[redacted]"
+    }
+  },
+  {
+    "label": "pizza",
+    "method": "POST",
+    "path": "/api/pizza",
+    "body": {},
+    "status": 200,
+    "response": {
+      "pizza": {
+        "id": 108450,
+        "name": "An Empty Siciliana",
+        "dough": {
+          "ID": 1,
+          "name": "Thin",
+          "caloriesPerSlice": 100
+        },
+        "ingredients": [
+          {
+            "ID": 4,
+            "name": "Bianco di Nizza tomatoes",
+            "caloriesPerSlice": 50,
+            "vegetarian": true
+          },
+          {
+            "ID": 8,
+            "name": "Mozzarella fior di latte",
+            "caloriesPerSlice": 150,
+            "vegetarian": true
+          },
+          {
+            "ID": 32,
+            "name": "Chicken",
+            "caloriesPerSlice": 100,
+            "vegetarian": false
+          },
+          {
+            "ID": 18,
+            "name": "Spinach",
+            "caloriesPerSlice": 25,
+            "vegetarian": true
+          },
+          {
+            "ID": 20,
+            "name": "Jalapenos",
+            "caloriesPerSlice": 50,
+            "vegetarian": true
+          },
+          {
+            "ID": 33,
+            "name": "Beef",
+            "caloriesPerSlice": 100,
+            "vegetarian": false
+          },
+          {
+            "ID": 13,
+            "name": "Bacon",
+            "caloriesPerSlice": 250,
+            "vegetarian": false
+          },
+          {
+            "ID": 1,
+            "name": "Extra virgin olive oil",
+            "caloriesPerSlice": 50,
+            "vegetarian": true
+          }
+        ],
+        "tool": "Pizza cutter"
+      },
+      "calories": 775,
+      "vegetarian": false
+    }
+  },
+  {
+    "label": "decimal",
+    "method": "POST",
+    "path": "/api/ratings",
+    "body": {
+      "pizza_id": 108450,
+      "stars": 3.5
+    },
+    "status": 400,
+    "response": {
+      "error": "json: cannot unmarshal number 3.5 into Go struct field Rating.stars of type int"
+    }
+  },
+  {
+    "label": "text",
+    "method": "POST",
+    "path": "/api/ratings",
+    "body": {
+      "pizza_id": 108450,
+      "stars": "3"
+    },
+    "status": 400,
+    "response": {
+      "error": "json: cannot unmarshal string into Go struct field Rating.stars of type int"
+    }
+  },
+  {
+    "label": "missing",
+    "method": "POST",
+    "path": "/api/ratings",
+    "body": {
+      "pizza_id": 108450
+    },
+    "status": 400,
+    "response": {
+      "error": "number of stars must be between 1 and 5 (inclusive)"
+    }
+  },
+  {
+    "label": "nonexistent",
+    "method": "POST",
+    "path": "/api/ratings",
+    "body": {
+      "pizza_id": 999999999,
+      "stars": 3
+    },
+    "status": 400,
+    "response": {
+      "error": "pizza ID 999999999 not found"
+    }
+  },
+  {
+    "label": "no_token",
+    "method": "POST",
+    "path": "/api/ratings",
+    "body": {
+      "pizza_id": 108450,
+      "stars": 3
+    },
+    "status": 401,
+    "response": {
+      "error": "authentication failed"
+    }
+  },
+  {
+    "label": "short_token",
+    "method": "POST",
+    "path": "/api/ratings",
+    "body": {
+      "pizza_id": 108450,
+      "stars": 3
+    },
+    "status": 401,
+    "response": {
+      "error": "authentication failed"
+    }
+  },
+  {
+    "label": "exclude_all",
+    "method": "POST",
+    "path": "/api/pizza",
+    "body": {
+      "excludedTools": [
+        "Knife",
+        "Pizza cutter",
+        "Scissors"
+      ]
+    },
+    "status": 500,
+    "response": ""
+  },
+  {
+    "label": "madeup_read_only",
+    "method": "GET",
+    "path": "/api/ratings",
+    "body": null,
+    "status": 200,
+    "response": {
+      "keys": [
+        "ratings"
+      ],
+      "ratings_count": 50
+    }
+  }
+]

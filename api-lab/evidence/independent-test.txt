@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.0, pytest-9.1.1, pluggy-1.7.0 -- /Users/zeus/Documents/ChatGPT/VALIDATE/api-lab/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.10.0', 'Platform': 'macOS-15.7.3-arm64-arm-64bit', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.7.0'}, 'Plugins': {'metadata': '3.1.1', 'html': '4.2.0'}, 'JAVA_HOME': '/Users/zeus/Library/Java/JavaVirtualMachines/corretto-1.8.0_504/Contents/Home'}
+rootdir: /Users/zeus/Documents/ChatGPT/VALIDATE/api-lab
+configfile: pytest.ini
+plugins: metadata-3.1.1, html-4.2.0
+collecting ... collected 1 item
+
+test_ratings.py::test_delete_rating PASSED                               [100%]
+
+============================== 1 passed in 4.21s ===============================
